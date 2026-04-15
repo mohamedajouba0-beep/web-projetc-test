@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Votre panier — Élume" />
+  <title>Panier — Élume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <header class="site-header" id="site-header">
+    <nav class="nav container">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <a href="index.html" class="nav-logo">Élume<sup>®</sup></a>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="shop.html">Boutique</a></li>
+        <li><a href="shop.html?cat=nouveautes">Nouveautés</a></li>
+        <li><a href="shop.html?cat=promos">Promos</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="cart.html" class="nav-icon-btn" aria-label="Panier">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div style="background:var(--c-bg-alt);border-bottom:1px solid var(--c-border);padding-block:.75rem;font-size:.8125rem;color:var(--c-muted)">
+      <div class="container">
+        <nav aria-label="Fil d'Ariane" style="display:flex;align-items:center;gap:.5rem">
+          <a href="index.html">Accueil</a>
+          <span style="color:var(--c-border)">›</span>
+          <span style="color:var(--c-text);font-weight:500">Panier</span>
+        </nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <h1 style="font-family:var(--ff-display);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:400;color:var(--c-primary);margin-bottom:2rem">
+          Mon panier <span id="cart-count-title" style="font-size:.6em;color:var(--c-muted);font-family:var(--ff-body);font-weight:400"></span>
+        </h1>
+
+        <!-- Empty cart -->
+        <div class="empty-cart" id="empty-cart" style="display:none">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <h2>Votre panier est vide</h2>
+          <p>Découvrez notre collection et ajoutez vos articles préférés.</p>
+          <a href="shop.html" class="btn btn--dark">Découvrir la boutique</a>
+        </div>
+
+        <!-- Cart content -->
+        <div class="cart-layout" id="cart-content" style="display:none">
+          <div>
+            <table class="cart-table" id="cart-table">
+              <thead>
+                <tr>
+                  <th>Article</th>
+                  <th style="text-align:center">Quantité</th>
+                  <th>Prix</th>
+                </tr>
+              </thead>
+              <tbody id="cart-tbody">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--c-border)">
+              <a href="shop.html" style="display:inline-flex;align-items:center;gap:.375rem;font-size:.875rem;font-weight:600;color:var(--c-muted);transition:color .2s" onmouseover="this.style.color='var(--c-primary)'" onmouseout="this.style.color='var(--c-muted)'">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+                Continuer les achats
+              </a>
+              <button id="clear-cart-btn" class="btn btn--ghost btn--sm" aria-label="Vider le panier">Vider le panier</button>
+            </div>
+          </div>
+
+          <!-- Summary -->
+          <aside class="cart-summary" aria-label="Récapitulatif de commande">
+            <h3>Récapitulatif</h3>
+
+            <div class="summary-row">
+              <span>Sous-total</span>
+              <strong id="subtotal">0€</strong>
+            </div>
+            <div class="summary-row" id="shipping-row">
+              <span>Livraison</span>
+              <strong id="shipping-cost">—</strong>
+            </div>
+            <div class="summary-row" id="promo-row" style="display:none;color:var(--c-success)">
+              <span>Code promo</span>
+              <strong id="promo-saving">−0€</strong>
+            </div>
+            <div class="summary-row total">
+              <span>Total</span>
+              <strong id="total">0€</strong>
+            </div>
+
+            <div class="cart-promo">
+              <input type="text" id="promo-input" placeholder="Code promo" aria-label="Code promo" />
+              <button class="btn btn--ghost btn--sm" id="apply-promo">Appliquer</button>
+            </div>
+            <p id="promo-msg" style="font-size:.75rem;margin-top:.25rem;min-height:1rem"></p>
+
+            <a href="checkout.html" class="btn btn--dark btn--full" id="checkout-btn" style="margin-top:1rem">
+              Passer la commande
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+
+            <div style="display:flex;justify-content:center;gap:1rem;margin-top:1.25rem;opacity:.5">
+              <svg width="32" height="20" viewBox="0 0 32 20" fill="none"><rect width="32" height="20" rx="3" fill="#1A1F71"/><text x="16" y="14" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif" font-weight="bold">VISA</text></svg>
+              <svg width="32" height="20" viewBox="0 0 32 20" fill="none"><rect width="32" height="20" rx="3" fill="#EB001B" opacity=".9"/><circle cx="12" cy="10" r="7" fill="#EB001B"/><circle cx="20" cy="10" r="7" fill="#F79E1B"/><path d="M16 5.5a7 7 0 0 1 0 9 7 7 0 0 1 0-9Z" fill="#FF5F00"/></svg>
+              <svg width="32" height="20" viewBox="0 0 32 20" fill="none"><rect width="32" height="20" rx="3" fill="#003087"/><text x="16" y="14" text-anchor="middle" font-size="7" fill="white" font-family="sans-serif" font-weight="bold">PayPal</text></svg>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">Élume<sup>®</sup></div>
+          <p>Mode contemporaine femme — des pièces intemporelles, fabriquées pour durer.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Boutique</h4>
+          <ul>
+            <li><a href="shop.html">Toute la collection</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Aide</h4>
+          <ul>
+            <li><a href="#">Livraison & retours</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Marque</h4>
+          <ul>
+            <li><a href="#">Notre histoire</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="footer-year"></span> Élume. Tous droits réservés.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

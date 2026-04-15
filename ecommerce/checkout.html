@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Finaliser votre commande — Élume" />
+  <title>Commande — Élume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <header class="site-header" id="site-header">
+    <nav class="nav container">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <a href="index.html" class="nav-logo">Élume<sup>®</sup></a>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="shop.html">Boutique</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="cart.html" class="nav-icon-btn" aria-label="Panier">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div style="background:var(--c-bg-alt);border-bottom:1px solid var(--c-border);padding-block:.75rem;font-size:.8125rem;color:var(--c-muted)">
+      <div class="container">
+        <nav aria-label="Fil d'Ariane" style="display:flex;align-items:center;gap:.5rem">
+          <a href="index.html">Accueil</a>
+          <span style="color:var(--c-border)">›</span>
+          <a href="cart.html">Panier</a>
+          <span style="color:var(--c-border)">›</span>
+          <span style="color:var(--c-text);font-weight:500">Commande</span>
+        </nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <h1 style="font-family:var(--ff-display);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:400;color:var(--c-primary);margin-bottom:2.5rem">
+          Finaliser la commande
+        </h1>
+
+        <!-- Redirect if empty cart -->
+        <div id="empty-checkout" style="display:none;text-align:center;padding:4rem 2rem">
+          <p style="color:var(--c-muted);margin-bottom:1.5rem">Votre panier est vide.</p>
+          <a href="shop.html" class="btn btn--dark">Retour à la boutique</a>
+        </div>
+
+        <!-- Checkout layout -->
+        <div class="checkout-layout" id="checkout-layout" style="display:none">
+          <div id="checkout-form-wrapper">
+            <!-- Step 1 : Coordonnées -->
+            <div class="checkout-form-section">
+              <h3><span class="step-num">1</span> Vos coordonnées</h3>
+              <form id="checkout-form" novalidate>
+                <div class="form-grid-2">
+                  <div class="form-group" id="grp-prenom">
+                    <label for="prenom">Prénom *</label>
+                    <input type="text" id="prenom" name="prenom" placeholder="Marie" autocomplete="given-name" required />
+                    <span class="err">Ce champ est requis.</span>
+                  </div>
+                  <div class="form-group" id="grp-nom">
+                    <label for="nom">Nom *</label>
+                    <input type="text" id="nom" name="nom" placeholder="Dupont" autocomplete="family-name" required />
+                    <span class="err">Ce champ est requis.</span>
+                  </div>
+                </div>
+                <div class="form-group" id="grp-email">
+                  <label for="email">Email *</label>
+                  <input type="email" id="email" name="email" placeholder="marie@email.com" autocomplete="email" required />
+                  <span class="err">Adresse email invalide.</span>
+                </div>
+                <div class="form-group" id="grp-tel">
+                  <label for="tel">Téléphone *</label>
+                  <input type="tel" id="tel" name="tel" placeholder="+33 6 00 00 00 00" autocomplete="tel" required />
+                  <span class="err">Ce champ est requis.</span>
+                </div>
+              </form>
+            </div>
+
+            <!-- Step 2 : Livraison -->
+            <div class="checkout-form-section">
+              <h3><span class="step-num">2</span> Adresse de livraison</h3>
+              <div class="form-group" id="grp-adresse">
+                <label for="adresse">Adresse *</label>
+                <input type="text" id="adresse" name="adresse" placeholder="12 rue des Fleurs" autocomplete="street-address" required />
+                <span class="err">Ce champ est requis.</span>
+              </div>
+              <div class="form-grid-2">
+                <div class="form-group" id="grp-cp">
+                  <label for="cp">Code postal *</label>
+                  <input type="text" id="cp" name="cp" placeholder="75001" autocomplete="postal-code" required />
+                  <span class="err">Ce champ est requis.</span>
+                </div>
+                <div class="form-group" id="grp-ville">
+                  <label for="ville">Ville *</label>
+                  <input type="text" id="ville" name="ville" placeholder="Paris" autocomplete="address-level2" required />
+                  <span class="err">Ce champ est requis.</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="pays">Pays</label>
+                <select id="pays" name="pays" autocomplete="country">
+                  <option value="FR" selected>France</option>
+                  <option value="BE">Belgique</option>
+                  <option value="CH">Suisse</option>
+                  <option value="LU">Luxembourg</option>
+                  <option value="MC">Monaco</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="notes">Notes (optionnel)</label>
+                <input type="text" id="notes" placeholder="Instructions de livraison, digicode…" />
+              </div>
+            </div>
+
+            <!-- Step 3 : Paiement -->
+            <div class="checkout-form-section">
+              <h3><span class="step-num">3</span> Paiement</h3>
+              <div class="payment-options" role="radiogroup" aria-label="Méthode de paiement">
+                <label class="payment-option">
+                  <input type="radio" name="payment" value="card" checked />
+                  <span class="payment-option__icon">💳</span>
+                  <div>
+                    <div class="payment-option__label">Carte bancaire</div>
+                    <div class="payment-option__sub">Visa, Mastercard, American Express</div>
+                  </div>
+                </label>
+                <label class="payment-option">
+                  <input type="radio" name="payment" value="paypal" />
+                  <span class="payment-option__icon">🅿</span>
+                  <div>
+                    <div class="payment-option__label">PayPal</div>
+                    <div class="payment-option__sub">Vous serez redirigé vers PayPal</div>
+                  </div>
+                </label>
+                <label class="payment-option">
+                  <input type="radio" name="payment" value="apple" />
+                  <span class="payment-option__icon">🍎</span>
+                  <div>
+                    <div class="payment-option__label">Apple Pay</div>
+                    <div class="payment-option__sub">Paiement express Touch ID / Face ID</div>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Card fields (shown for card payment) -->
+              <div id="card-fields" style="margin-top:1.25rem">
+                <div class="form-group">
+                  <label for="card-num">Numéro de carte *</label>
+                  <input type="text" id="card-num" placeholder="•••• •••• •••• ••••" maxlength="19" />
+                </div>
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label for="card-exp">Expiration *</label>
+                    <input type="text" id="card-exp" placeholder="MM / AA" maxlength="7" />
+                  </div>
+                  <div class="form-group">
+                    <label for="card-cvv">CVV *</label>
+                    <input type="text" id="card-cvv" placeholder="•••" maxlength="4" />
+                  </div>
+                </div>
+              </div>
+
+              <button type="button" class="btn btn--dark btn--full" id="place-order-btn" style="margin-top:1.5rem;padding-block:1rem;font-size:1rem">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Confirmer la commande
+              </button>
+              <p style="font-size:.75rem;color:var(--c-muted);text-align:center;margin-top:.75rem">
+                🔒 Paiement 100% sécurisé — Vos données sont chiffrées
+              </p>
+            </div>
+          </div>
+
+          <!-- Order success (shown after submit) -->
+          <div class="order-success" id="order-success">
+            <div class="order-success__icon" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+            </div>
+            <h2>Commande confirmée !</h2>
+            <p>Merci pour votre achat. Vous recevrez un email de confirmation d'ici quelques minutes.</p>
+            <div class="order-success__num" id="order-num">Commande #000000</div>
+            <p style="font-size:.875rem">Livraison estimée : <strong id="delivery-date"></strong></p>
+            <div style="display:flex;justify-content:center;gap:1rem;margin-top:2rem;flex-wrap:wrap">
+              <a href="shop.html" class="btn btn--dark">Continuer les achats</a>
+              <a href="index.html" class="btn btn--outline">Accueil</a>
+            </div>
+          </div>
+
+          <!-- Summary sidebar -->
+          <aside class="checkout-summary" id="checkout-summary" aria-label="Récapitulatif">
+            <h3>Votre commande</h3>
+            <div id="checkout-items"></div>
+            <div class="summary-divider"></div>
+            <div class="summary-row">
+              <span>Sous-total</span>
+              <strong id="co-subtotal">—</strong>
+            </div>
+            <div class="summary-row">
+              <span>Livraison</span>
+              <strong id="co-shipping">—</strong>
+            </div>
+            <div class="summary-row total">
+              <span>Total</span>
+              <strong id="co-total">—</strong>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">Élume<sup>®</sup></div>
+          <p>Mode contemporaine femme — des pièces intemporelles, fabriquées pour durer.</p>
+        </div>
+        <div class="footer-col"><h4>Boutique</h4><ul><li><a href="shop.html">Collection</a></li></ul></div>
+        <div class="footer-col"><h4>Aide</h4><ul><li><a href="#">Livraison</a></li><li><a href="#">FAQ</a></li></ul></div>
+        <div class="footer-col"><h4>Marque</h4><ul><li><a href="#">Notre histoire</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="footer-year"></span> Élume. Tous droits réservés.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

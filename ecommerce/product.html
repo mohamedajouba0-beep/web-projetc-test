@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fiche produit — Élume" />
+  <title>Produit — Élume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <header class="site-header" id="site-header">
+    <nav class="nav container">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <a href="index.html" class="nav-logo">Élume<sup>®</sup></a>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="shop.html" class="active">Boutique</a></li>
+        <li><a href="shop.html?cat=nouveautes">Nouveautés</a></li>
+        <li><a href="shop.html?cat=promos">Promos</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="cart.html" class="nav-icon-btn" aria-label="Panier">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Breadcrumb -->
+    <div style="background:var(--c-bg-alt);border-bottom:1px solid var(--c-border);padding-block:.75rem;font-size:.8125rem;color:var(--c-muted)">
+      <div class="container">
+        <nav aria-label="Fil d'Ariane" style="display:flex;align-items:center;gap:.5rem">
+          <a href="index.html">Accueil</a>
+          <span aria-hidden="true" style="color:var(--c-border)">›</span>
+          <a href="shop.html">Boutique</a>
+          <span aria-hidden="true" style="color:var(--c-border)">›</span>
+          <span id="breadcrumb-name" style="color:var(--c-text);font-weight:500">Produit</span>
+        </nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <!-- Not found state -->
+        <div id="product-not-found" style="display:none;text-align:center;padding:4rem 2rem">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 1.5rem;color:var(--c-border)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <h2 style="font-family:var(--ff-display);font-size:1.5rem;color:var(--c-primary);margin-bottom:.625rem">Produit introuvable</h2>
+          <p style="color:var(--c-muted);margin-bottom:2rem">Ce produit n'existe pas ou n'est plus disponible.</p>
+          <a href="shop.html" class="btn btn--dark">Retour à la boutique</a>
+        </div>
+
+        <!-- Product detail -->
+        <div class="product-detail" id="product-detail" style="display:none">
+
+          <!-- Gallery -->
+          <div class="product-gallery">
+            <div class="gallery-main" id="gallery-main"></div>
+            <div class="gallery-thumbs" id="gallery-thumbs"></div>
+          </div>
+
+          <!-- Info -->
+          <div class="product-info" id="product-info">
+            <div class="product-info__badge" id="product-badge"></div>
+            <div class="product-info__cat" id="product-cat"></div>
+            <h1 class="product-info__name" id="product-name"></h1>
+            <div class="product-info__rating" id="product-rating"></div>
+            <div class="product-info__price" id="product-price"></div>
+
+            <p id="product-desc" style="color:var(--c-muted);line-height:1.75;margin-bottom:1.75rem;font-size:.9375rem"></p>
+
+            <!-- Color selector -->
+            <div class="option-group" id="color-group">
+              <div class="option-group__label">
+                Couleur&nbsp;: <span class="option-group__selected" id="selected-color"></span>
+              </div>
+              <div class="color-swatches" id="color-swatches"></div>
+            </div>
+
+            <!-- Size selector -->
+            <div class="option-group" id="size-group">
+              <div class="option-group__label">
+                Taille&nbsp;: <span class="option-group__selected" id="selected-size"></span>
+              </div>
+              <div class="size-grid" id="size-grid"></div>
+            </div>
+
+            <!-- Add to cart -->
+            <div class="atc-row">
+              <div class="qty-selector" role="group" aria-label="Quantité">
+                <button class="qty-btn" id="qty-minus" aria-label="Diminuer">−</button>
+                <input class="qty-input" type="number" id="qty-input" value="1" min="1" max="10" aria-label="Quantité" readonly />
+                <button class="qty-btn" id="qty-plus" aria-label="Augmenter">+</button>
+              </div>
+              <button class="btn btn--dark" id="atc-btn" style="flex:1">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                Ajouter au panier
+              </button>
+            </div>
+
+            <!-- Size needed hint -->
+            <p id="size-hint" style="display:none;font-size:.8rem;color:var(--c-accent);margin-top:-.75rem;margin-bottom:1rem">
+              ⚠ Veuillez sélectionner une taille.
+            </p>
+
+            <!-- Delivery info -->
+            <div style="display:flex;flex-direction:column;gap:.625rem;margin-bottom:1.75rem">
+              <div style="display:flex;align-items:center;gap:.625rem;font-size:.875rem;color:var(--c-muted)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--c-success);flex-shrink:0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                Livraison offerte dès 80€
+              </div>
+              <div style="display:flex;align-items:center;gap:.625rem;font-size:.875rem;color:var(--c-muted)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--c-success);flex-shrink:0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                Retours gratuits sous 30 jours
+              </div>
+              <div style="display:flex;align-items:center;gap:.625rem;font-size:.875rem;color:var(--c-muted)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--c-success);flex-shrink:0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                Expédition sous 24h ouvrées
+              </div>
+            </div>
+
+            <!-- Details list -->
+            <div class="product-info__features">
+              <h4>Détails & composition</h4>
+              <ul id="product-details"></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Related products -->
+        <div id="related-section" style="display:none;margin-top:5rem">
+          <h2 class="section-title" style="margin-bottom:2rem">Vous aimerez aussi</h2>
+          <div class="product-grid" id="related-grid"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">Élume<sup>®</sup></div>
+          <p>Mode contemporaine femme — des pièces intemporelles, fabriquées pour durer.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Boutique</h4>
+          <ul>
+            <li><a href="shop.html">Toute la collection</a></li>
+            <li><a href="shop.html?cat=robes">Robes</a></li>
+            <li><a href="shop.html?cat=tops">Tops</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Aide</h4>
+          <ul>
+            <li><a href="#">Livraison & retours</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Marque</h4>
+          <ul>
+            <li><a href="#">Notre histoire</a></li>
+            <li><a href="#">Engagement durable</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="footer-year"></span> Élume. Tous droits réservés.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Élume — Mode contemporaine femme. Robes, tops, pantalons, vestes et accessoires de qualité." />
+  <title>Élume — Mode Contemporaine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Toast container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <nav class="nav container">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <a href="index.html" class="nav-logo">Élume<sup>®</sup></a>
+
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="index.html" class="active">Accueil</a></li>
+        <li><a href="shop.html">Boutique</a></li>
+        <li><a href="shop.html?cat=nouveautes">Nouveautés</a></li>
+        <li><a href="shop.html?cat=promos">Promos</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="shop.html" class="nav-icon-btn" aria-label="Rechercher">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </a>
+        <a href="cart.html" class="nav-icon-btn" aria-label="Panier" id="nav-cart-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- PROMO STRIP -->
+    <div class="promo-strip">
+      <div class="promo-strip__inner">
+        <span class="promo-strip__item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          Livraison offerte dès 80€
+        </span>
+        <span class="promo-strip__item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          Retours gratuits 30 jours
+        </span>
+        <span class="promo-strip__item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Paiement sécurisé
+        </span>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__text">
+        <span class="hero__eyebrow">Nouvelle collection SS 2026</span>
+        <h1 class="hero__title">L'élégance<br />au quotidien</h1>
+        <p class="hero__sub">
+          Des pièces intemporelles conçues pour durer. Mode consciente, matières choisies, silhouettes impeccables.
+        </p>
+        <div class="hero__actions">
+          <a href="shop.html" class="btn btn--dark">Découvrir la collection</a>
+          <a href="shop.html?cat=nouveautes" class="btn btn--outline">Voir les nouveautés</a>
+        </div>
+      </div>
+      <div class="hero__img">
+        <div class="hero__img-inner" style="background:linear-gradient(160deg,#2a1820 0%,#1a0a10 60%,#3a1828 100%);">
+          <!-- Decorative fashion illustration via CSS -->
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.15">
+            <svg width="260" height="360" viewBox="0 0 260 360" fill="none">
+              <ellipse cx="130" cy="80" rx="45" ry="55" fill="white"/>
+              <path d="M60 160 Q50 200 45 360 H215 Q210 200 200 160 Q170 200 130 205 Q90 200 60 160Z" fill="white"/>
+              <path d="M60 160 Q50 140 40 120 Q70 110 90 130" fill="white"/>
+              <path d="M200 160 Q210 140 220 120 Q190 110 170 130" fill="white"/>
+            </svg>
+          </div>
+          <div class="hero__img-tag">
+            <strong>Robe Portefeuille Satin</strong>
+            <span>À partir de 119€ · 3 coloris</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="section">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-label">Nos catégories</span>
+          <h2 class="section-title">Explorez notre univers</h2>
+        </header>
+        <div class="category-grid">
+          <a href="shop.html?cat=robes" class="category-card reveal">
+            <div class="category-card__bg" style="background:linear-gradient(145deg,#8a3828 0%,#5a1810 100%)"></div>
+            <div class="category-card__overlay"></div>
+            <div class="category-card__label">
+              <span>Robes</span>
+              <small>4 articles</small>
+            </div>
+          </a>
+          <a href="shop.html?cat=tops" class="category-card reveal" style="--delay:.07s">
+            <div class="category-card__bg" style="background:linear-gradient(145deg,#2a5838 0%,#1a3828 100%)"></div>
+            <div class="category-card__overlay"></div>
+            <div class="category-card__label">
+              <span>Tops</span>
+              <small>4 articles</small>
+            </div>
+          </a>
+          <a href="shop.html?cat=pantalons" class="category-card reveal" style="--delay:.14s">
+            <div class="category-card__bg" style="background:linear-gradient(145deg,#283858 0%,#182030 100%)"></div>
+            <div class="category-card__overlay"></div>
+            <div class="category-card__label">
+              <span>Pantalons</span>
+              <small>4 articles</small>
+            </div>
+          </a>
+          <a href="shop.html?cat=vestes" class="category-card reveal" style="--delay:.21s">
+            <div class="category-card__bg" style="background:linear-gradient(145deg,#5a4020 0%,#3a2810 100%)"></div>
+            <div class="category-card__overlay"></div>
+            <div class="category-card__label">
+              <span>Vestes</span>
+              <small>4 articles</small>
+            </div>
+          </a>
+          <a href="shop.html?cat=accessoires" class="category-card reveal" style="--delay:.28s">
+            <div class="category-card__bg" style="background:linear-gradient(145deg,#7a6020 0%,#5a4010 100%)"></div>
+            <div class="category-card__overlay"></div>
+            <div class="category-card__label">
+              <span>Accessoires</span>
+              <small>4 articles</small>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS (8 produits) -->
+    <section class="section section--alt" id="featured">
+      <div class="container">
+        <header class="section-header section-header--center">
+          <span class="section-label">Sélection</span>
+          <h2 class="section-title">Nos coups de cœur</h2>
+        </header>
+        <div class="product-grid" id="featured-grid">
+          <!-- Populated by JS -->
+        </div>
+        <div style="text-align:center;margin-top:2.5rem">
+          <a href="shop.html" class="btn btn--outline">Voir toute la collection</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDITORIAL BAND -->
+    <section class="section section--dark" style="text-align:center;padding-block:clamp(4rem,8vw,6rem)">
+      <div class="container">
+        <span class="section-label" style="color:var(--c-accent)">Notre engagement</span>
+        <h2 class="section-title" style="color:#fff;margin-bottom:1rem">Mode responsable,<br />qualité durable</h2>
+        <p style="color:rgba(255,255,255,.65);max-width:52ch;margin:0 auto 2.5rem;font-size:1.0625rem;line-height:1.75">
+          Chez Élume, chaque pièce est conçue pour durer bien au-delà d'une saison. Nous choisissons des matières certifiées et travaillons avec des ateliers européens qui partagent nos valeurs.
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:720px;margin-inline:auto">
+          <div>
+            <div style="font-family:var(--ff-display);font-size:2.25rem;color:var(--c-accent);margin-bottom:.5rem">94%</div>
+            <div style="font-size:.875rem;color:rgba(255,255,255,.6)">matières certifiées OEKO-TEX</div>
+          </div>
+          <div>
+            <div style="font-family:var(--ff-display);font-size:2.25rem;color:var(--c-accent);margin-bottom:.5rem">60%</div>
+            <div style="font-size:.875rem;color:rgba(255,255,255,.6)">production en Europe</div>
+          </div>
+          <div>
+            <div style="font-family:var(--ff-display);font-size:2.25rem;color:var(--c-accent);margin-bottom:.5rem">0</div>
+            <div style="font-size:.875rem;color:rgba(255,255,255,.6)">sur-stock grâce à la précommande</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOUVEAUTÉS -->
+    <section class="section" id="new-arrivals">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-label">Vient d'arriver</span>
+          <h2 class="section-title">Nouveautés</h2>
+        </header>
+        <div class="product-grid" id="new-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">Élume<sup>®</sup></div>
+          <p>Mode contemporaine femme — des pièces intemporelles, fabriquées pour durer. Livraison offerte dès 80€ en France.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Boutique</h4>
+          <ul>
+            <li><a href="shop.html">Toute la collection</a></li>
+            <li><a href="shop.html?cat=robes">Robes</a></li>
+            <li><a href="shop.html?cat=tops">Tops</a></li>
+            <li><a href="shop.html?cat=pantalons">Pantalons</a></li>
+            <li><a href="shop.html?cat=vestes">Vestes</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Aide</h4>
+          <ul>
+            <li><a href="#">Guide des tailles</a></li>
+            <li><a href="#">Livraison & retours</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Marque</h4>
+          <ul>
+            <li><a href="#">Notre histoire</a></li>
+            <li><a href="#">Engagement durable</a></li>
+            <li><a href="#">Programme fidélité</a></li>
+            <li><a href="#">Presse</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="footer-year"></span> Élume. Tous droits réservés.</span>
+        <div style="display:flex;gap:1.5rem">
+          <a href="#">CGV</a>
+          <a href="#">Confidentialité</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
