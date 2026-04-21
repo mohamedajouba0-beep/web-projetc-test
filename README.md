@@ -1,8 +1,33 @@
-# Tableau de bord Production — TPE Mécanique de précision
+# Dashboard Produzione — Officina Meccanica di Precisione
 
-Classeur Excel **prêt à l'emploi** pour piloter en temps réel les ordres de production
-d'un atelier de mécanique. Conçu pour une tablette ouvrant **Excel Online** via OneDrive
-(aucun VBA, aucune macro, aucun script à exécuter côté utilisateur).
+Dashboard per il monitoraggio della produzione in tempo reale. Due versioni
+disponibili :
+
+| Versione | File | Lingua | Piattaforma |
+|---|---|---|---|
+| **Google Sheets** (🇮🇹 italiano) | [`google_sheets/Code.gs`](./google_sheets/Code.gs) + [`google_sheets/ISTRUZIONI.md`](./google_sheets/ISTRUZIONI.md) | Italiano | Google Sheets (web, tablet, mobile) |
+| **Excel** (🇫🇷 français) | [`Tableau_Production.xlsx`](./Tableau_Production.xlsx) | Français | Excel Online / Desktop / mobile |
+
+---
+
+## 👉 Versione Google Sheets italiana (consigliata)
+
+Istruzioni complete in italiano : [`google_sheets/ISTRUZIONI.md`](./google_sheets/ISTRUZIONI.md).
+
+Riassunto :
+1. Crea un nuovo Google Sheet vuoto.
+2. **Estensioni → Apps Script**.
+3. Incolla il contenuto di [`google_sheets/Code.gs`](./google_sheets/Code.gs).
+4. Esegui la funzione `buildDashboard`.
+5. Il foglio è costruito con i tre fogli **Magazzino**, **Ordini Clienti**, **Produzione**,
+   formule collegate, menu a tendina e formattazione condizionale.
+
+---
+
+## Version Excel française (legacy)
+
+Classeur Excel **prêt à l'emploi** pour piloter en temps réel les ordres de production.
+Conçu pour une tablette ouvrant **Excel Online** via OneDrive (aucun VBA, aucune macro).
 
 Fichier à ouvrir : **`Tableau_Production.xlsx`** (à la racine du dépôt).
 
